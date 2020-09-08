@@ -49,4 +49,24 @@ class OrderController extends Controller
             return Response()->json(['status' =>0]);
         }
     }
+    public function update($id, Request $request){
+        $validator=Validator::make($request->all(),
+            [
+                'id_costumer' => 'required',
+                'id_product' => 'reqiured'
+            ]
+        );
+        if($validator->fails()){
+            return Response()->json($validator->errors());
+        }
+        $ubah = Order::where('id', $id)->update([
+            'id_costumer' => $request->id_costumer,
+            'id_product' => $request->id_product
+        ]);
+        if($ubah){
+            return Response()->json(['status' => 1]);
+        }else{
+            return Response()->json(['status' => 0]);
+        }
+    }
 }
