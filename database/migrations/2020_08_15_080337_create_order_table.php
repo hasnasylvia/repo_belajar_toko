@@ -15,6 +15,10 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama');
+            $table->text('alamat');
+            $table->string('barang');
+
             $table->unsignedBigInteger('id_costumer');
 
             $table->foreign('id_costumer')->references('id_costumer')->on('costumer');
